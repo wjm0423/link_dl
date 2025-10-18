@@ -5,7 +5,7 @@ def get_parser():
   parser = argparse.ArgumentParser()
 
   parser.add_argument(
-    "--wandb", action=argparse.BooleanOptionalAction, default=False, help="True or False"
+    "--wandb", action=argparse.BooleanOptionalAction, default=True, help="True or False"
   )
 
   parser.add_argument(

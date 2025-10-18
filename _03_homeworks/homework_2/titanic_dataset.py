@@ -28,15 +28,16 @@ class TitanicDataset(Dataset):
 
 
 class TitanicTestDataset(Dataset):
-  def __init__(self, X):
+  def __init__(self, X, passenger_ids): # ', passenger_ids' 추가
     self.X = torch.FloatTensor(X)
+    self.passenger_ids = passenger_ids # 추가
 
   def __len__(self):
     return len(self.X)
 
   def __getitem__(self, idx):
     feature = self.X[idx]
-    return {'input': feature}
+    return {'input': feature, 'PassengerId': self.passenger_ids[idx]} # ''PassengerId': self.passenger_ids[idx]' 추가
 
   def __str__(self):
     str = "Data Size: {0}, Input Shape: {1}".format(
@@ -79,7 +80,8 @@ def get_preprocessed_dataset():
     print(dataset)
 
     train_dataset, validation_dataset = random_split(dataset, [0.8, 0.2])
-    test_dataset = TitanicTestDataset(test_X.values)
+    test_ids = test_df["PassengerId"].values # 원본 PassengerId를 불러오기 위해 추가한 코드
+    test_dataset = TitanicTestDataset(test_X.values, passenger_ids=test_ids) # ', passenger_ids=test_ids' 추가
     #print(test_dataset)
 
     return train_dataset, validation_dataset, test_dataset
@@ -125,7 +127,7 @@ def get_preprocessed_dataset_4(all_df):
 
     # 혼자탑승(alone) 컬럼 새롭게 추가
     all_df.loc[all_df["family_num"] == 0, "alone"] = 1
-    all_df["alone"].fillna(0, inplace=True)
+    all_df["alone"] = all_df["alone"].fillna(0)
 
     # 학습에 불필요한 컬럼 제거
     all_df = all_df.drop(["PassengerId", "Name", "family_name", "name", "Ticket", "Cabin"], axis=1)
@@ -144,7 +146,7 @@ def get_preprocessed_dataset_5(all_df):
     ),
     "title"
     ] = "other"
-    all_df["Embarked"].fillna("missing", inplace=True)
+    all_df["Embarked"] = all_df["Embarked"].fillna("missing")
 
     return all_df
 
