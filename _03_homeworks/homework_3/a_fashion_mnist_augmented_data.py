@@ -6,7 +6,7 @@ from torch import nn
 
 from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
-from torchvision.transforms import transforms, v2
+from torchvision import transforms, v2
 from torch.utils.data import ConcatDataset
 
 BASE_PATH = str(Path(__file__).resolve().parent.parent.parent)  # BASE_PATH: /Users/yhhan/git/link_dl
@@ -74,10 +74,10 @@ def get_fashion_mnist_test_data():
 
     test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test))
 
-    f_mnist_transforms = nn.Sequential(
-        transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=[0.2860], std=[0.3530]),
-    )
+    f_mnist_transforms = v2.Compose([
+        v2.ConvertImageDtype(torch.float),
+        v2.Normalize(mean=[0.2860], std=[0.3530]),
+    ])
 
     return f_mnist_test_images, test_data_loader, f_mnist_transforms
 
