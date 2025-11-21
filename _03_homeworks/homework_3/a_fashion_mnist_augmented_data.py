@@ -21,7 +21,7 @@ from _01_code._99_common_utils.utils import get_num_cpu_cores, is_linux, is_wind
 def get_fashion_mnist_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
-    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=v2.ToTensor())
+    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=v2.ToTensor(), target_transform=lambda y: torch.tensor(y))
     f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
 
     f_mnist_transforms = v2.Compose([
