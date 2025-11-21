@@ -6,7 +6,8 @@ from torch import nn
 
 from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
-from torchvision.transforms import transforms
+from torchvision.transforms import transforms, v2
+from torch.utils.data import ConcatDataset
 
 BASE_PATH = str(Path(__file__).resolve().parent.parent.parent)  # BASE_PATH: /Users/yhhan/git/link_dl
 print(BASE_PATH)
@@ -21,8 +22,20 @@ from _01_code._99_common_utils.utils import get_num_cpu_cores, is_linux, is_wind
 def get_fashion_mnist_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
-    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=transforms.ToTensor())
+    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=v2.ToTensor())
     f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
+
+    f_mnist_train_transforms = v2.Compose([
+        v2.RandomHorizontalFlip(),
+        v2.RandomRotation(10)
+    ])
+
+    transformed_train_data = []
+    for image, label in f_mnist_train:
+        transformed_image = f_mnist_train_transforms(image)
+        transformed_train_data.append((transformed_image, label))
+
+    f_mnist_train = ConcatDataset([f_mnist_train, transformed_train_data])
 
     print("Num Train Samples: ", len(f_mnist_train))
     print("Num Validation Samples: ", len(f_mnist_validation))
@@ -42,9 +55,9 @@ def get_fashion_mnist_data():
         pin_memory=True, num_workers=num_data_loading_workers
     )
 
-    f_mnist_transforms = nn.Sequential(
-        transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=0.0, std=0.1),
+    f_mnist_transforms = v2.Compose(
+        v2.ConvertImageDtype(torch.float),
+        v2.Normalize(mean=0.2860, std=0.3530)
     )
 
     return train_data_loader, validation_data_loader, f_mnist_transforms
@@ -63,7 +76,7 @@ def get_fashion_mnist_test_data():
 
     f_mnist_transforms = nn.Sequential(
         transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=0.0, std=0.1),
+        transforms.Normalize(mean=0.2860, std=0.3530),
     )
 
     return f_mnist_test_images, test_data_loader, f_mnist_transforms
