@@ -21,27 +21,23 @@ from _01_code._99_common_utils.utils import get_num_cpu_cores, is_linux, is_wind
 def get_fashion_mnist_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
-    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=v2.ToTensor(), target_transform=lambda y: torch.tensor(y))
-    f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
-
-    f_mnist_transforms = v2.Compose([
+    f_mnist_train_transforms = v2.Compose([
         v2.RandomHorizontalFlip(),
-        v2.RandomRotation(10)
+        v2.RandomRotation(10),
+        v2.ToTensor(),
+        v2.ConvertImageDtype(torch.float)
     ])
 
-    transformed_train_data_images = []
-    transformed_train_data_labels = []
-    for image, label in f_mnist_train:
-        transformed_image = f_mnist_transforms(image)
-        transformed_train_data_images.append(transformed_image)
-        transformed_train_data_labels.append(label)
+    f_mnist_validation_transforms = v2.Compose([
+        v2.ToTensor(),
+        v2.ConvertImageDtype(torch.float),
+        v2.Normalize(mean=[0.2860], std=[0.3530])
+    ])
 
-    augmented_dataset = TensorDataset(
-        torch.stack(transformed_train_data_images),
-        torch.tensor(transformed_train_data_labels)
-    )
+    f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=f_mnist_train_transforms, target_transform=lambda y: torch.tensor(y))
+    f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
 
-    f_mnist_train = ConcatDataset([f_mnist_train, augmented_dataset])
+    f_mnist_validation.dataset.transform = f_mnist_validation_transforms
 
     print("Num Train Samples: ", len(f_mnist_train))
     print("Num Validation Samples: ", len(f_mnist_validation))
@@ -72,20 +68,20 @@ def get_fashion_mnist_data():
 def get_fashion_mnist_test_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
-    f_mnist_test_images = datasets.FashionMNIST(data_path, train=False, download=True)
-    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=v2.ToTensor())
+    f_mnist_test_transforms = v2.Compose([
+        v2.ToTensor(),
+        v2.ConvertImageDtype(torch.float),
+        v2.Normalize(mean=[0.2860], std=[0.3530]),
+    ])
+
+    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=f_mnist_test_transforms)
 
     print("Num Test Samples: ", len(f_mnist_test))
     print("Sample Shape: ", f_mnist_test[0][0].shape)  # torch.Size([1, 28, 28])
 
     test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test))
 
-    f_mnist_transforms = v2.Compose(
-        v2.ConvertImageDtype(torch.float),
-        v2.Normalize(mean=[0.2860], std=[0.3530]),
-    )
-
-    return f_mnist_test_images, test_data_loader, f_mnist_transforms
+    return f_mnist_test, test_data_loader
 
 
 if __name__ == "__main__":
