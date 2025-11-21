@@ -55,10 +55,10 @@ def get_fashion_mnist_data():
         pin_memory=True, num_workers=num_data_loading_workers
     )
 
-    f_mnist_transforms = v2.Compose(
+    f_mnist_transforms = v2.Compose([
         v2.ConvertImageDtype(torch.float),
         v2.Normalize(mean=[0.2860], std=[0.3530])
-    )
+    ])
 
     return train_data_loader, validation_data_loader, f_mnist_transforms
 
