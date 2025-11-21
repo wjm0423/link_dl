@@ -67,7 +67,7 @@ def get_fashion_mnist_test_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
     f_mnist_test_images = datasets.FashionMNIST(data_path, train=False, download=True)
-    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=transforms.ToTensor())
+    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=v2.ToTensor())
 
     print("Num Test Samples: ", len(f_mnist_test))
     print("Sample Shape: ", f_mnist_test[0][0].shape)  # torch.Size([1, 28, 28])
