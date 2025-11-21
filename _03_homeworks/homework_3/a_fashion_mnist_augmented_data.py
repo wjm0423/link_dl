@@ -2,11 +2,10 @@ import os
 from pathlib import Path
 import torch
 import wandb
-from torch import nn
 
-from torch.utils.data import DataLoader, random_split, ConcatDataset, TensorDataset
+from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
-from torchvision.transforms import transforms, v2
+from torchvision.transforms import v2
 
 BASE_PATH = str(Path(__file__).resolve().parent.parent.parent)  # BASE_PATH: /Users/yhhan/git/link_dl
 print(BASE_PATH)
@@ -25,12 +24,13 @@ def get_fashion_mnist_data():
         v2.RandomHorizontalFlip(),
         v2.RandomRotation(10),
         v2.ToTensor(),
-        v2.ConvertImageDtype(torch.float)
+        v2.ConvertImageDtype(torch.float32),
+        v2.Normalize(mean=[0.2860], std=[0.3530])
     ])
 
     f_mnist_validation_transforms = v2.Compose([
         v2.ToTensor(),
-        v2.ConvertImageDtype(torch.float),
+        v2.ConvertImageDtype(torch.float32),
         v2.Normalize(mean=[0.2860], std=[0.3530])
     ])
 
@@ -57,20 +57,15 @@ def get_fashion_mnist_data():
         pin_memory=True, num_workers=num_data_loading_workers
     )
 
-    f_mnist_transforms = v2.Compose([
-        v2.ConvertImageDtype(torch.float),
-        v2.Normalize(mean=[0.2860], std=[0.3530])
-    ])
-
-    return train_data_loader, validation_data_loader, f_mnist_transforms
+    return train_data_loader, validation_data_loader, f_mnist_train_transforms
 
 
 def get_fashion_mnist_test_data():
     data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
 
-    f_mnist_test_transforms = v2.Compose([
+    f_mnist_transforms = v2.Compose([
         v2.ToTensor(),
-        v2.ConvertImageDtype(torch.float),
+        v2.ConvertImageDtype(torch.float32),
         v2.Normalize(mean=[0.2860], std=[0.3530]),
     ])
 
@@ -79,9 +74,9 @@ def get_fashion_mnist_test_data():
     print("Num Test Samples: ", len(f_mnist_test))
     print("Sample Shape: ", f_mnist_test[0][0].shape)  # torch.Size([1, 28, 28])
 
-    test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test))
+    test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test), shuffle=False)
 
-    return f_mnist_test, test_data_loader
+    return f_mnist_test, test_data_loader, f_mnist_transforms
 
 
 if __name__ == "__main__":
