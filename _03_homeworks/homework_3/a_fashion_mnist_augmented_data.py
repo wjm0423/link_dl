@@ -4,10 +4,9 @@ import torch
 import wandb
 from torch import nn
 
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader, random_split, ConcatDataset, TensorDataset
 from torchvision import datasets
-from torchvision import transforms, v2
-from torch.utils.data import ConcatDataset
+from torchvision.transforms import transforms, v2
 
 BASE_PATH = str(Path(__file__).resolve().parent.parent.parent)  # BASE_PATH: /Users/yhhan/git/link_dl
 print(BASE_PATH)
@@ -25,17 +24,24 @@ def get_fashion_mnist_data():
     f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=v2.ToTensor())
     f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
 
-    f_mnist_train_transforms = v2.Compose([
+    f_mnist_transforms = v2.Compose([
         v2.RandomHorizontalFlip(),
         v2.RandomRotation(10)
     ])
 
-    transformed_train_data = []
+    transformed_train_data_images = []
+    transformed_train_data_labels = []
     for image, label in f_mnist_train:
-        transformed_image = f_mnist_train_transforms(image)
-        transformed_train_data.append((transformed_image, label))
+        transformed_image = f_mnist_transforms(image)
+        transformed_train_data_images.append(transformed_image)
+        transformed_train_data_labels.append(label)
 
-    f_mnist_train = ConcatDataset([f_mnist_train, transformed_train_data])
+    augmented_dataset = TensorDataset(
+        torch.stack(transformed_train_data_images),
+        torch.tensor(transformed_train_data_labels)
+    )
+
+    f_mnist_train = ConcatDataset([f_mnist_train, augmented_dataset])
 
     print("Num Train Samples: ", len(f_mnist_train))
     print("Num Validation Samples: ", len(f_mnist_validation))
@@ -74,10 +80,10 @@ def get_fashion_mnist_test_data():
 
     test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test))
 
-    f_mnist_transforms = v2.Compose([
+    f_mnist_transforms = v2.Compose(
         v2.ConvertImageDtype(torch.float),
         v2.Normalize(mean=[0.2860], std=[0.3530]),
-    ])
+    )
 
     return f_mnist_test_images, test_data_loader, f_mnist_transforms
 
