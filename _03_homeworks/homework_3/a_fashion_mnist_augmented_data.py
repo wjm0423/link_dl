@@ -57,7 +57,7 @@ def get_fashion_mnist_data():
 
     f_mnist_transforms = v2.Compose(
         v2.ConvertImageDtype(torch.float),
-        v2.Normalize(mean=0.2860, std=0.3530)
+        v2.Normalize(mean=[0.2860], std=[0.3530])
     )
 
     return train_data_loader, validation_data_loader, f_mnist_transforms
@@ -76,7 +76,7 @@ def get_fashion_mnist_test_data():
 
     f_mnist_transforms = nn.Sequential(
         transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=0.2860, std=0.3530),
+        transforms.Normalize(mean=[0.2860], std=[0.3530]),
     )
 
     return f_mnist_test_images, test_data_loader, f_mnist_transforms
