@@ -22,8 +22,8 @@ def get_fashion_mnist_data():
 
     f_mnist_train_transforms = v2.Compose([
         v2.RandomHorizontalFlip(),
-        v2.RandomCrop([28, 28], padding=4),
-        v2.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1),
+        v2.RandomCrop([28, 28], padding=6),
+        v2.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
         v2.RandomRotation(degrees=10),
         v2.ToTensor(),
         v2.ConvertImageDtype(torch.float32),
