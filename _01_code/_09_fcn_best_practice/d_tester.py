@@ -27,6 +27,9 @@ class ClassificationTester:
       for test_batch in self.test_data_loader:
         input_test, target_test = test_batch
 
+        input_test = input_test.to(torch.device('cpu'))
+        target_test = target_test.to(torch.device('cpu'))
+
         if self.transforms:
           input_test = self.transforms(input_test)
 
