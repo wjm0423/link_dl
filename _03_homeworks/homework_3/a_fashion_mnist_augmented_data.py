@@ -70,7 +70,7 @@ def get_fashion_mnist_test_data():
         v2.Normalize(mean=[0.2860], std=[0.3530]),
     ])
 
-    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=f_mnist_test_transforms)
+    f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=f_mnist_transforms)
 
     print("Num Test Samples: ", len(f_mnist_test))
     print("Sample Shape: ", f_mnist_test[0][0].shape)  # torch.Size([1, 28, 28])
