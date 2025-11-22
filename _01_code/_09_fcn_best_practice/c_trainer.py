@@ -9,7 +9,7 @@ from _01_code._99_common_utils.utils import strfdelta
 class ClassificationTrainer:
   def __init__(
     self, project_name, model, optimizer, train_data_loader, validation_data_loader, transforms,
-    run_time_str, wandb, device, checkpoint_file_path
+    run_time_str, wandb, device, checkpoint_file_path, scheduler
   ):
     self.project_name = project_name
     self.model = model
@@ -21,11 +21,7 @@ class ClassificationTrainer:
     self.wandb = wandb
     self.device = device
     self.checkpoint_file_path = checkpoint_file_path
-    self.scheduler = torch.optim.lr_scheduler.StepLR(
-        self.optimizer,
-        step_size=3,
-        gamma=0.7
-    )
+    self.scheduler = scheduler
 
     # Use a built-in loss function
     self.loss_fn = nn.CrossEntropyLoss()
