@@ -76,7 +76,7 @@ def get_fashion_mnist_test_data():
     print("Num Test Samples: ", len(f_mnist_test))
     print("Sample Shape: ", f_mnist_test[0][0].shape)  # torch.Size([1, 28, 28])
 
-    test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=len(f_mnist_test), shuffle=False)
+    test_data_loader = DataLoader(dataset=f_mnist_test, batch_size=1024, shuffle=False)
 
     return f_mnist_test, test_data_loader, f_mnist_transforms
 
