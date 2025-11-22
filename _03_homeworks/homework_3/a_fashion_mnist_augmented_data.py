@@ -24,6 +24,7 @@ def get_fashion_mnist_data():
         v2.RandomHorizontalFlip(),
         v2.RandomCrop([28, 28], padding=4),
         v2.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1),
+        v2.RandomRotation(degrees=10),
         v2.ToTensor(),
         v2.ConvertImageDtype(torch.float32),
         v2.Normalize(mean=[0.2860], std=[0.3530])
