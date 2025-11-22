@@ -1,0 +1,35 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.13.5",
+  "startedAt": "2025-10-16T13:31:54.544193Z",
+  "args": [
+    "--wandb",
+    "--activation_fn",
+    "Sigmoid",
+    "--batch_size",
+    "64"
+  ],
+  "program": "C:\\Users\\WJM\\git\\link_dl\\_04_your_code\\hw2.py",
+  "codePath": "_04_your_code\\hw2.py",
+  "codePathLocal": "hw2.py",
+  "git": {
+    "remote": "https://github.com/linklab/link_dl.git",
+    "commit": "9a3456f647dbd98105bfde25bd379f9129ba2e89"
+  },
+  "email": "wjm0423@naver.com",
+  "root": "C:\\Users\\WJM\\git\\link_dl\\_04_your_code",
+  "host": "BOOK-8H5OMEL4QJ",
+  "executable": "C:\\Users\\WJM\\anaconda3\\envs\\link_dl\\python.exe",
+  "cpu_count": 12,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "1001349181440",
+      "used": "350618497024"
+    }
+  },
+  "memory": {
+    "total": "33898278912"
+  },
+  "writerId": "9x53efgz3v7v79ciw823we6378beq91c"
+}

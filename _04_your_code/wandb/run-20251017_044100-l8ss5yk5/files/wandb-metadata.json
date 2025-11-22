@@ -1,0 +1,26 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.13.5",
+  "startedAt": "2025-10-16T19:41:00.937323Z",
+  "program": "_04_your_code/hw2.ipynb",
+  "git": {
+    "remote": "https://github.com/linklab/link_dl.git",
+    "commit": "9a3456f647dbd98105bfde25bd379f9129ba2e89"
+  },
+  "email": "wjm0423@naver.com",
+  "root": "C:\\Users\\WJM\\git\\link_dl\\_04_your_code",
+  "host": "BOOK-8H5OMEL4QJ",
+  "executable": "C:\\Users\\WJM\\anaconda3\\envs\\link_dl\\python.exe",
+  "cpu_count": 12,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "1001349181440",
+      "used": "354887974912"
+    }
+  },
+  "memory": {
+    "total": "33898278912"
+  },
+  "writerId": "hgb2m0j2qkcxd6dn6b8xcjrd4rkf0xhk"
+}

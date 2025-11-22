@@ -1,0 +1,58 @@
+_wandb:
+    value:
+        cli_version: 0.22.1
+        e:
+            hgb2m0j2qkcxd6dn6b8xcjrd4rkf0xhk:
+                cpu_count: 12
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "1001349181440"
+                        used: "354887974912"
+                email: wjm0423@naver.com
+                executable: C:\Users\WJM\anaconda3\envs\link_dl\python.exe
+                git:
+                    commit: 9a3456f647dbd98105bfde25bd379f9129ba2e89
+                    remote: https://github.com/linklab/link_dl.git
+                host: BOOK-8H5OMEL4QJ
+                memory:
+                    total: "33898278912"
+                os: Windows-11-10.0.26100-SP0
+                program: _04_your_code/homework2.ipynb
+                python: CPython 3.13.5
+                root: C:\Users\WJM\git\link_dl\_04_your_code
+                startedAt: "2025-10-16T19:41:00.937323Z"
+                writerId: hgb2m0j2qkcxd6dn6b8xcjrd4rkf0xhk
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+            "4": 3.13.5
+            "5": 0.22.1
+            "8":
+                - 1
+                - 3
+            "12": 0.22.1
+            "13": windows-amd64
+batch_size:
+    value: 64
+epochs:
+    value: 200
+learning_rate:
+    value: 0.001
+n_hidden_unit_list:
+    value:
+        - 32
+        - 16

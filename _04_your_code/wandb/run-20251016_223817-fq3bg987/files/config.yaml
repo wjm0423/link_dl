@@ -1,0 +1,67 @@
+_wandb:
+    value:
+        cli_version: 0.22.1
+        e:
+            jlshl93e68gdew3pduj75gk60zzlcj51:
+                args:
+                    - --wandb
+                    - --activation_fn
+                    - ELU
+                    - --batch_size
+                    - "64"
+                codePath: _04_your_code\hw2.py
+                codePathLocal: hw2.py
+                cpu_count: 12
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "1001349181440"
+                        used: "350611361792"
+                email: wjm0423@naver.com
+                executable: C:\Users\WJM\anaconda3\envs\link_dl\python.exe
+                git:
+                    commit: 9a3456f647dbd98105bfde25bd379f9129ba2e89
+                    remote: https://github.com/linklab/link_dl.git
+                host: BOOK-8H5OMEL4QJ
+                memory:
+                    total: "33898278912"
+                os: Windows-11-10.0.26100-SP0
+                program: C:\Users\WJM\git\link_dl\_04_your_code\hw2.py
+                python: CPython 3.13.5
+                root: C:\Users\WJM\git\link_dl\_04_your_code
+                startedAt: "2025-10-16T13:38:17.797587Z"
+                writerId: jlshl93e68gdew3pduj75gk60zzlcj51
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+                - 5
+                - 53
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+            "4": 3.13.5
+            "5": 0.22.1
+            "8":
+                - 3
+            "12": 0.22.1
+            "13": windows-amd64
+activation_fn:
+    value: ELU
+batch_size:
+    value: 64
+epochs:
+    value: 200
+learning_rate:
+    value: 0.001
+n_hidden_unit_list:
+    value:
+        - 32
+        - 16
+print_every:
+    value: 10
