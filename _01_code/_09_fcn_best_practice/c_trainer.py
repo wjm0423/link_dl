@@ -142,11 +142,11 @@ class ClassificationTrainer:
           "Training speed (epochs/sec.)": epoch_per_second,
         })
 
-        if hasattr(self, "scheduler") and self.scheduler is not None:
-            self.scheduler.step()
-
         if early_stop:
           break
+
+      if hasattr(self, "scheduler") and self.scheduler is not None:
+          self.scheduler.step()
 
     elapsed_time = datetime.now() - training_start_time
     print(f"Final training time: {strfdelta(elapsed_time, '%H:%M:%S')}")
