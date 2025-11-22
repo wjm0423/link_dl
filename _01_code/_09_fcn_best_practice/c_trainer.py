@@ -21,6 +21,11 @@ class ClassificationTrainer:
     self.wandb = wandb
     self.device = device
     self.checkpoint_file_path = checkpoint_file_path
+    self.scheduler = torch.optim.lr_scheduler.StepLR(
+        self.optimizer,
+        step_size=3,
+        gamma=0.7
+    )
 
     # Use a built-in loss function
     self.loss_fn = nn.CrossEntropyLoss()
@@ -136,6 +141,9 @@ class ClassificationTrainer:
           "Validation accuracy (%)": validation_accuracy,
           "Training speed (epochs/sec.)": epoch_per_second,
         })
+
+        if hasattr(self, "scheduler") and self.scheduler is not None:
+            self.scheduler.step()
 
         if early_stop:
           break

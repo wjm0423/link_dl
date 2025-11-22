@@ -1,0 +1,58 @@
+_wandb:
+    value:
+        cli_version: 0.22.1
+        e:
+            iosbpa5ap00n2oppbkz8ahn4nthj96aq:
+                codePath: _01_code\_11_cnn_architectures\a_mnist_train_cnn.py
+                codePathLocal: a_mnist_train_cnn.py
+                cpu_count: 12
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "1001349181440"
+                        used: "341387894784"
+                email: wjm0423@naver.com
+                executable: C:\Users\WJM\anaconda3\envs\link_dl\python.exe
+                git:
+                    commit: 5e9586c66dd30ca474b0e32b7ac5ceffa36535df
+                    remote: https://github.com/wjm0423/link_dl.git
+                host: BOOK-8H5OMEL4QJ
+                memory:
+                    total: "33898278912"
+                os: Windows-11-10.0.26200-SP0
+                program: C:\Users\WJM\git\link_dl\_01_code\_11_cnn_architectures\a_mnist_train_cnn.py
+                python: CPython 3.13.5
+                root: C:\Users\WJM\git\link_dl\_01_code\_11_cnn_architectures
+                startedAt: "2025-10-20T08:42:21.619360Z"
+                writerId: iosbpa5ap00n2oppbkz8ahn4nthj96aq
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.13.5
+            "5": 0.22.1
+            "8":
+                - 3
+            "12": 0.22.1
+            "13": windows-amd64
+batch_size:
+    value: 2048
+early_stop_delta:
+    value: 1e-05
+early_stop_patience:
+    value: 10
+epochs:
+    value: 10000
+learning_rate:
+    value: 0.001
+validation_intervals:
+    value: 10

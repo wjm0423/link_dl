@@ -1,0 +1,28 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "CPython 3.13.5",
+  "startedAt": "2025-10-20T08:42:21.619360Z",
+  "program": "C:\\Users\\WJM\\git\\link_dl\\_01_code\\_11_cnn_architectures\\a_mnist_train_cnn.py",
+  "codePath": "_01_code\\_11_cnn_architectures\\a_mnist_train_cnn.py",
+  "codePathLocal": "a_mnist_train_cnn.py",
+  "git": {
+    "remote": "https://github.com/wjm0423/link_dl.git",
+    "commit": "5e9586c66dd30ca474b0e32b7ac5ceffa36535df"
+  },
+  "email": "wjm0423@naver.com",
+  "root": "C:\\Users\\WJM\\git\\link_dl\\_01_code\\_11_cnn_architectures",
+  "host": "BOOK-8H5OMEL4QJ",
+  "executable": "C:\\Users\\WJM\\anaconda3\\envs\\link_dl\\python.exe",
+  "cpu_count": 12,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "1001349181440",
+      "used": "341387894784"
+    }
+  },
+  "memory": {
+    "total": "33898278912"
+  },
+  "writerId": "iosbpa5ap00n2oppbkz8ahn4nthj96aq"
+}

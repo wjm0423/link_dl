@@ -170,12 +170,7 @@ torchviz*
 
 *.pt
 
-wandb
-
-*.zip
-
-_04_your_code
-# _04_homeworks_solution
+# _04_your_code
 
 
 ignore
