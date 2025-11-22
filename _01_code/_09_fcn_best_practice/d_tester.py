@@ -10,7 +10,7 @@ class ClassificationTester:
     self.transforms = transforms
 
     self.latest_file_path = os.path.join(
-      checkpoint_file_path, f"{project_name}_checkpoint_best.pt"
+      checkpoint_file_path, f"{project_name}_checkpoint_latest.pt"
     )
 
     print("MODEL FILE: {0}".format(self.latest_file_path))
